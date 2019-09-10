@@ -15,16 +15,12 @@ output3=re.findall(r'\S+@(\S+)', text)
 
 domains = {}
 
-#output4=re.findall(r'\S+@corndel.com', text)
-#for x in output4:
-#    print(x)
-#print(len(output4))
-
 for email in output3:
-    if email in domains.keys():
-        domains[email] = domains[email] + 1
+    email=email.split('.')
+    if email[0] in domains.keys():
+        domains[email[0]] = domains[email[0]] + 1
     else:
-        domains[email] = 1
+        domains[email[0]] = 1
 
 print("Searching manually for 'softwire.com' domain gives "+str(len(output))+" addresses: ")
 print(output)
