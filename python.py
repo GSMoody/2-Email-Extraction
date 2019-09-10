@@ -11,11 +11,14 @@ for word in words:
 
 output2=re.findall(r'\S+@softwire.com', text)
 
-output3=re.findall(r'\S+@(\S+)', text)
+output3=re.findall(r'\S+@\S+', text)
+output3=list(dict.fromkeys(output3))
 
 domains = {}
 
 for email in output3:
+    email=email.split('@')
+    email=email[len(email)-1]
     email=email.split('.')
     if email[0] in domains.keys():
         domains[email[0]] = domains[email[0]] + 1
@@ -36,11 +39,11 @@ print("The 10 most common domains are:")
 for x in range(0,10):
     print(domains[x])
 
-f=input("Enter the minimum number of occurrences you wish to search domains for:")
-domains_subset=[]
+#f=input("Enter the minimum number of occurrences you wish to search domains for:")
+#domains_subset=[]
 
-for email in domains:
-    if email[1] >= int(f):
-        domains_subset.append(email)
-print("The domains that occur more than "+f+" times are:")
-print(domains_subset)
+#for email in domains:
+#    if email[1] >= int(f):
+#        domains_subset.append(email)
+#print("The domains that occur more than "+f+" times are:")
+#print(domains_subset)
